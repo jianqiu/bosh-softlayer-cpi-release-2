@@ -1,0 +1,13 @@
+set -e
+
+cd src/github.com/maximilien/bosh-softlayer-cpi
+
+pkgs_dir=${BOSH_PACKAGES_DIR:-/var/vcap/packages}
+export GOROOT=$(readlink -nf $pkgs_dir/golang_1.5)
+export PATH=$GOROOT/bin:$PATH
+
+bin/build-linux-amd64
+
+mkdir -p ${BOSH_INSTALL_TARGET}/bin
+
+cp out/softlayer_cpi ${BOSH_INSTALL_TARGET}/bin/
