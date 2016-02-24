@@ -1,0 +1,1 @@
+6bbb852 github.com/maximilien/bosh-softlayer-cpi/.git
