@@ -40,11 +40,11 @@ jobs:
       - name: bosh-release
       run: {path: bosh-softlayer-cpi-release/ci/bats.sh}
       params:
-        BOSH_AWS_ACCESS_KEY_ID: {{bats_bosh_lite_access_key_id}}
-        BOSH_AWS_SECRET_ACCESS_KEY: {{bats_bosh_lite_secret_access_key}}
-        BOSH_LITE_SECURITY_GROUP: {{bats_bosh_lite_security_group}}
-        BOSH_LITE_KEYPAIR: {{bats_bosh_lite_keypair}}
-        BOSH_LITE_PRIVATE_KEY: {{bats_bosh_lite_private_key}}
+        BOSH_AWS_ACCESS_KEY_ID: {{aws_builder_access_key}}
+        BOSH_AWS_SECRET_ACCESS_KEY: {{aws_builder_secret_access_key}}
+        BOSH_LITE_SECURITY_GROUP: {{aws_builder_sec_group}}
+        BOSH_LITE_KEYPAIR: {{aws_builder_keypair_name}}
+        BOSH_LITE_PRIVATE_KEY: {{aws_builder_private_key}}
 
 - name: promote
   serial: true
@@ -62,8 +62,8 @@ jobs:
       - name: pipeline-bosh-softlayer-cpi-tarball
       run: {path: bosh-softlayer-cpi-release/ci/promote-release.sh}
       params:
-        BOSH_AWS_ACCESS_KEY_ID: {{promote_access_key_id}}
-        BOSH_AWS_SECRET_ACCESS_KEY: {{promote_secret_access_key}}
+        BOSH_AWS_ACCESS_KEY_ID: {{aws_builder_access_key}}
+        BOSH_AWS_SECRET_ACCESS_KEY: {{aws_builder_secret_access_key}}
   - put: bosh-softlayer-cpi-release
     resource: promoted-bosh-softlayer-cpi-release
     params:
@@ -78,16 +78,16 @@ resources:
   source:
     key: dev-version
     bucket: {{s3_pipeline_bucket}}
-    access_key_id: {{s3_pipeline_access_key_id}}
-    secret_access_key: {{s3_pipeline_secret_access_key}}
+    access_key_id: {{aws_builder_access_key}}
+    secret_access_key: {{aws_builder_secret_access_key}}
 
 - name: pipeline-bosh-softlayer-cpi-tarball
   type: s3
   source:
     bucket: {{s3_pipeline_bucket}}
     regexp: bosh-softlayer-cpi-(.*).tgz
-    access_key_id: {{s3_pipeline_access_key_id}}
-    secret_access_key: {{s3_pipeline_secret_access_key}}
+    access_key_id: {{aws_builder_access_key}}
+    secret_access_key: {{aws_builder_secret_access_key}}
 
 - name: bosh-softlayer-cpi-release
   type: git
