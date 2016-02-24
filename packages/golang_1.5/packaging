@@ -1,5 +1,4 @@
-# abort script on any command that exits with a non zero value
-set -e
+set -e -x
 
 tar xzf golang_1.5/go1.5.3.linux-amd64.tar.gz
 
