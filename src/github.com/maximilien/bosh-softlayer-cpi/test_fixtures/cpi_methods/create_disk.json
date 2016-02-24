@@ -1,0 +1,13 @@
+{
+  "method": "create_disk",
+  "arguments": [
+    1024,
+    {
+      "consistent_performance_iscsi": true
+    },
+    "{{.ID}}"
+  ],
+  "context": {
+    "director_uuid": "c37383cd-d5a8-43d7-b595-2ede9513c858"
+  }
+}

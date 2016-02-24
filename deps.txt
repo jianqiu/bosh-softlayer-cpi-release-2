@@ -1,1 +1,12 @@
-6bbb852 github.com/maximilien/bosh-softlayer-cpi/.git
+e1bc38d github.com/cloudfoundry/bosh-utils/.git
+7889449 github.com/cloudfoundry/gofileutils/.git
+2788f0d github.com/kr/fs/.git
+09d5c45 github.com/mattn/go-sqlite3/.git
+ef16dea github.com/maximilien/bosh-softlayer-cpi/.git
+3cb9e6a github.com/maximilien/softlayer-go/.git
+179d4d0 github.com/nu7hatch/gouuid/.git
+ac3d45d github.com/onsi/ginkgo/.git
+a1094b2 github.com/onsi/gomega/.git
+3fd3c19 github.com/pivotal-golang/clock/.git
+e84cc8c github.com/pkg/sftp/.git
+1f22c01 golang.org/x/crypto/.git
