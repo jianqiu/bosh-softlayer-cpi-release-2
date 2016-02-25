@@ -1,6 +1,12 @@
 ---
-jobs:
+groups:
+  - name: bosh-softlayer-cpi-release
+    jobs:
+      - build-candidate
+      - bats-ubuntu
+      - promote-candidate
 
+jobs:
 - name: build-candidate
   serial: true
   plan:
@@ -128,6 +134,8 @@ resources:
   source:
     regexp: bosh-init
     bucket: {{s3_bosh_init_bucket}}
+    access_key_id: {{s3_access_key_id}}
+    secret_access_key: {{s3_secret_access_key}}
 
 - name: director-info
   type: s3
@@ -148,3 +156,5 @@ resources:
   source:
     bucket: dev-bosh-softlayer-cpi-stemcells
     regexp: light-bosh-stemcell-3184.1-softlayer-esxi-ubuntu-trusty-go_agent
+    access_key_id: {{s3_access_key_id}}
+    secret_access_key: {{s3_secret_access_key}}
