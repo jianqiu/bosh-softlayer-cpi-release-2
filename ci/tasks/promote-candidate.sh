@@ -25,6 +25,9 @@ blobstore:
 EOF
 set -x
 
+echo "installing bosh CLI"
+gem install bosh_cli --no-ri --no-rdoc
+
 echo "using bosh CLI version..."
 bosh version
 
