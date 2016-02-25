@@ -1,7 +1,7 @@
 #!/bin/bash
 
 (
-  set -e -x
+  set -e
 
   function printStatus {
       if [ $? -eq 0 ]; then
@@ -19,7 +19,7 @@
   echo -e "\n Formatting packages..."
   go fmt ./...
 
-  go get github.com/onsi/ginkgo
+  go get github.com/onsi/ginkgo/ginkgo
   go get github.com/onsi/gomega
 
   echo -e "\n Integration Testing packages:"
