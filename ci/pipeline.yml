@@ -1,11 +1,4 @@
 ---
-groups:
-  - name: bosh-softlayer-cpi-release
-    jobs:
-      - build-candidate
-      - lifecycle
-      - bats-ubuntu
-      - promote-candidate
 jobs:
 
 - name: build-candidate
@@ -65,7 +58,7 @@ jobs:
 - name: promote-candidate
   plan:
   - aggregate:
-    - {trigger: true,  get: bosh-cpi-dev-artifacts, passed: [lifecycle, bats-ubuntu]}
+    - {trigger: true,  get: bosh-cpi-dev-artifacts, passed: [bats-ubuntu]}
     - {trigger: false, get: bosh-cpi-release, resource: bosh-cpi-release-out}
     - {trigger: false, get: release-version-semver, params: {bump: major}}
 
@@ -133,7 +126,7 @@ resources:
 - name: bosh-init
   type: s3
   source:
-    regexp: bosh-init-([0-9\.]+)-linux-amd64
+    regexp: bosh-init
     bucket: {{s3_bosh_init_bucket}}
 
 - name: director-info
@@ -147,12 +140,11 @@ resources:
 - name: bats
   type: git
   source:
-    uri: https://github.com/cloudfoundry/bosh-acceptance-tests.git
+    uri: https://github.com/jianqiu/bosh-acceptance-tests.git
     branch: master
 
 - name: softlayer-ubuntu-stemcell
   type: s3
   source:
     bucket: dev-bosh-softlayer-cpi-stemcells
-    #regexp: bosh-stemcell-([0-9\.]+)-softalyer-esxi-ubuntu-trusty-go_agent.tgz
     regexp: light-bosh-stemcell-3184.1-softlayer-esxi-ubuntu-trusty-go_agent

@@ -11,7 +11,7 @@ cd bosh-cpi-release
 source .envrc
 
 echo "running unit tests"
-./src/github.com/maximilien/bosh-softlayer-cpi/bin/test
+./src/github.com/maximilien/bosh-softlayer-cpi/bin/test-unit
 
 echo "using bosh CLI version..."
 bosh version
