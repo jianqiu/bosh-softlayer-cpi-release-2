@@ -24,6 +24,6 @@ bosh version
 cpi_release_name="bosh-softlayer-cpi"
 
 echo "building CPI release..."
-bosh create release --name $cpi_release_name --version $semver --with-tarball
+bosh create release --name $cpi_release_name --version $semver --with-tarball --force
 
 mv dev_releases/$cpi_release_name/$cpi_release_name-$semver.tgz ../out/
