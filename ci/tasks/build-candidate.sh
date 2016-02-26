@@ -5,6 +5,9 @@ set -e
 semver=`cat version-semver/number`
 
 pushd bosh-cpi-release
+
+  source .envrc
+
   #echo "running unit tests"
   #pushd src/github.com/maximilien/bosh-softlayer-cpi
     # bin/test
