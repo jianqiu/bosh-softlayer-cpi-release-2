@@ -10,10 +10,10 @@ cd bosh-cpi-release
 
 source .envrc
 
-echo "running unit tests"
-pushd src/github.com/maximilien/bosh-softlayer-cpi
-  bin/test
-popd
+#echo "running unit tests"
+#pushd src/github.com/maximilien/bosh-softlayer-cpi
+ # bin/test
+#popd
 
 echo "installing bosh CLI"
 gem install bosh_cli --no-ri --no-rdoc
