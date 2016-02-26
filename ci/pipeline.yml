@@ -17,7 +17,7 @@ jobs:
   - put: version-semver
     params: {file: version-semver/number}
 
-  - task: build1
+  - task: build
     file: bosh-cpi-release/ci/tasks/build-candidate.yml
 
   - put: bosh-cpi-dev-artifacts
