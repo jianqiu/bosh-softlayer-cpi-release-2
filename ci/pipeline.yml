@@ -17,11 +17,11 @@ jobs:
   - put: version-semver
     params: {file: version-semver/number}
 
-  - task: build-candidate
+  - task: build1
     file: bosh-cpi-release/ci/tasks/build-candidate.yml
 
   - put: bosh-cpi-dev-artifacts
-    params: {from: candidate/bosh-softlayer-cpi-.*\.tgz}
+    params: {from: candidate/.*\.tgz}
 
 - name: bats-ubuntu
   plan:
@@ -85,7 +85,7 @@ resources:
 - name: bosh-cpi-dev-artifacts
   type: s3
   source:
-    regexp: bosh-softlayer-cpi-(.*).tgz
+    regexp: bosh-softlayer-cpi\.tgz
     bucket: {{s3_pipeline_bucket}}
     access_key_id: {{s3_access_key_id}}
     secret_access_key: {{s3_secret_access_key}}

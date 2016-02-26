@@ -2,28 +2,40 @@
 
 set -e
 
-semver=`cat version-semver/number`
-
-cd bosh-cpi-release
+source /etc/profile.d/chruby.sh
+chruby 2.1.2
 
 source .envrc
 
-#echo "running unit tests"
-#pushd src/github.com/maximilien/bosh-softlayer-cpi
- # bin/test
-#popd
+semver=`cat version-semver/number`
 
-echo "installing bosh CLI"
-gem install bosh_cli --no-ri --no-rdoc
+pushd bosh-cpi-release
+  #echo "running unit tests"
+  #pushd src/github.com/maximilien/bosh-softlayer-cpi
+    # bin/test
+  #popd
 
-echo "using bosh CLI version..."
-bosh version
+  echo "installing bosh CLI"
+  gem install bosh_cli --no-ri --no-rdoc
 
-cpi_release_name="bosh-softlayer-cpi"
+  echo "using bosh CLI version..."
+  bosh version
 
-echo "building CPI release..."
-bosh create release --name $cpi_release_name --version $semver --with-tarball --force
+  cpi_release_name="bosh-softlayer-cpi"
 
-mv dev_releases/$cpi_release_name/$cpi_release_name-$semver.tgz candidate/
+  echo "building CPI release..."
+  bosh create release --name $cpi_release_name --version $semver --with-tarball
+popd
+
+mv bosh-cpi-release/dev_releases/$cpi_release_name/$cpi_release_name-$semver.tgz candidate/
+
+
+
+
+
+
+
+
+
 
 
