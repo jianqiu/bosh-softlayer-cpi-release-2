@@ -2,8 +2,6 @@
 
 set -e
 
-source .envrc
-
 semver=`cat version-semver/number`
 
 pushd bosh-cpi-release
