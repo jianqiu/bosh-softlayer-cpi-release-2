@@ -12,7 +12,7 @@ source .envrc
 
 echo "running unit tests"
 pushd src/github.com/maximilien/bosh-softlayer-cpi
-  bin/test-unit
+  bin/test
 popd
 
 echo "installing bosh CLI"
