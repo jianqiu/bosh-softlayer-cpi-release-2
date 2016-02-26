@@ -4,10 +4,6 @@ set -e
 
 semver=`cat version-semver/number`
 
-pwd
-
-mkdir out
-
 cd bosh-cpi-release
 
 source .envrc
@@ -28,7 +24,6 @@ cpi_release_name="bosh-softlayer-cpi"
 echo "building CPI release..."
 bosh create release --name $cpi_release_name --version $semver --with-tarball --force
 
-mv dev_releases/$cpi_release_name/$cpi_release_name-$semver.tgz ../out/
+mv dev_releases/$cpi_release_name/$cpi_release_name-$semver.tgz candidate/
 
-pwd
 
