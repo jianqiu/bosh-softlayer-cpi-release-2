@@ -24,7 +24,6 @@ jobs:
     params: {from: build/out/.*\.tgz}
 
 - name: bats-ubuntu
-  serial: true
   plan:
   - aggregate:
     - {trigger: true,  passed: [build-candidate], get: bosh-cpi-dev-artifacts}
@@ -32,7 +31,7 @@ jobs:
     - {trigger: false, passed: [build-candidate], get: bosh-cpi-release, resource: bosh-cpi-release-in}
     - {trigger: false,                            get: bats}
     - {trigger: false,                            get: bosh-init}
-    - {trigger: false, passed: [build-candidate], get: version-semver, resource: version-semver}
+    - {trigger: true,  passed: [build-candidate], get: version-semver, resource: version-semver}
     - {trigger: false,                            get: bosh-release}
 
   - task: setup-director
@@ -86,7 +85,7 @@ resources:
 - name: bosh-cpi-dev-artifacts
   type: s3
   source:
-    regexp: bosh-softlayer-cpi\.tgz
+    regexp: bosh-softlayer-cpi-(.*).tgz
     bucket: {{s3_pipeline_bucket}}
     access_key_id: {{s3_access_key_id}}
     secret_access_key: {{s3_secret_access_key}}
@@ -125,23 +124,18 @@ resources:
     secret_access_key: {{s3_secret_access_key}}
 
 - name: bosh-release
-  type: bosh-io-release
+  type: s3
   source:
-    repository: cloudfoundry/bosh
+    regexp: bosh-236+dev.(.*).tgz
+    bucket: {{s3_stemcell_bucket}}
+    access_key_id: {{s3_access_key_id}}
+    secret_access_key: {{s3_secret_access_key}}
 
 - name: bosh-init
   type: s3
   source:
     regexp: bosh-init
     bucket: {{s3_bosh_init_bucket}}
-    access_key_id: {{s3_access_key_id}}
-    secret_access_key: {{s3_secret_access_key}}
-
-- name: director-info
-  type: s3
-  source:
-    bucket: {{s3_bosh_init_bucket}}
-    versioned_file: director-info
     access_key_id: {{s3_access_key_id}}
     secret_access_key: {{s3_secret_access_key}}
 
@@ -156,6 +150,6 @@ resources:
   type: s3
   source:
     bucket: dev-bosh-softlayer-cpi-stemcells
-    regexp: light-bosh-stemcell-3184.1-softlayer-esxi-ubuntu-trusty-go_agent
+    regexp: light-bosh-stemcell-\d+-softlayer-.*\.tgz
     access_key_id: {{s3_access_key_id}}
     secret_access_key: {{s3_secret_access_key}}
