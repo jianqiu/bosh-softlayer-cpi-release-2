@@ -148,8 +148,9 @@ resources:
 - name: bats
   type: git
   source:
-    uri: https://github.com/jianqiu/bosh-acceptance-tests.git
+    uri: git@github.com:jianqiu/bosh-acceptance-tests.git
     branch: master
+    private_key: {{github_promote_private_key}}
 
 - name: softlayer-ubuntu-stemcell
   type: s3
