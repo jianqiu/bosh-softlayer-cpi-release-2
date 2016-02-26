@@ -21,12 +21,12 @@ jobs:
     file: bosh-cpi-release/ci/tasks/build-candidate.yml
 
   - put: bosh-cpi-dev-artifacts
-    params: {from: build/out/bosh-softlayer-cpi-.*\.tgz}
+    params: {from: out/bosh-softlayer-cpi-.*\.tgz}
 
 - name: bats-ubuntu
   plan:
   - aggregate:
-    - {trigger: true,                             get: bosh-cpi-dev-artifacts}
+    - {trigger: true,  passed: [build-candidate], get: bosh-cpi-dev-artifacts}
     - {trigger: false,                            get: stemcell, resource: softlayer-ubuntu-stemcell}
     - {trigger: false, passed: [build-candidate], get: bosh-cpi-release, resource: bosh-cpi-release-in}
     - {trigger: false,                            get: bats}
