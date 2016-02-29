@@ -18,7 +18,7 @@ mv ../src ./src
 
 ls -la src/
 
-src/github.com/maximilien/bosh-softlayer-cpi/bin/buil-linux-amd64
+src/github.com/maximilien/bosh-softlayer-cpi/bin/build-linux-amd64
 
 ls -la src/github.com/maximilien/bosh-softlayer-cpi/out/
 
