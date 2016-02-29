@@ -16,11 +16,13 @@ mkdir ../src & cp -a * ../src/
 
 mv ../src ./src
 
+ls -la ..
+
 echo "after mv"
 
 pwd
 
-ls -la ..
+ls -la .
 
 ls -ls src/github.com/maximilien/bosh-softlayer-cpi/bin/
 
