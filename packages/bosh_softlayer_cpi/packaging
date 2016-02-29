@@ -12,8 +12,19 @@ export PATH=$GOROOT/bin:$PATH
 
 mkdir $BOSH_INSTALL_TARGET/bin
 
+
+pwd
+
+ls -la ..
+
 mkdir ../src
+
+ls -la ../src
+
 cp -a * ../src/
+
+pwd
+
 mv ../src ./src
 
 ls -la src/
