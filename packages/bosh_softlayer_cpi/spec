@@ -4,7 +4,7 @@ name: bosh_softlayer_cpi
 dependencies: [golang_1.3.3]
 
 files:
-- "**/*.go"
+- **/*
 
 excluded_files:
 - github.com/onsi/ginkgo/**/*
