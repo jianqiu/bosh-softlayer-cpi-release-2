@@ -12,6 +12,8 @@ export PATH=$GOROOT/bin:$PATH
 
 mkdir $BOSH_INSTALL_TARGET/bin
 
+pwd
+
+ls -la
+
 go build -o $BOSH_INSTALL_TARGET/bin/cpi src/github.com/maximilien/bosh-softlayer-cpi/main/*.go
-
-
