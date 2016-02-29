@@ -4,4 +4,6 @@ set -e
 
 bin=$(dirname $0)
 
+go install github.com/mattn/go-sqlite3
+
 go build -o $bin/cpi github.com/maximilien/bosh-softlayer-cpi/main
