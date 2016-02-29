@@ -14,13 +14,13 @@ mkdir $BOSH_INSTALL_TARGET/bin
 
 echo "before copy src"
 
-ls -la src/github.com/maximilien/bosh-softlayer-cpi/
+ls -la github.com/maximilien/bosh-softlayer-cpi/
 
 mkdir ../src & cp -a * ../src/
 
 echo "after copy src"
 
-ls -la src/github.com/maximilien/bosh-softlayer-cpi/
+ls -la ../src/github.com/maximilien/bosh-softlayer-cpi/
 
 echo "before mv"
 
