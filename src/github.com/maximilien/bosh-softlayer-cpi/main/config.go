@@ -6,26 +6,16 @@ import (
 	bosherr "github.com/cloudfoundry/bosh-utils/errors"
 	boshsys "github.com/cloudfoundry/bosh-utils/system"
 
-	bslcvm "github.com/maximilien/bosh-softlayer-cpi/softlayer/vm"
+	bslcaction "github.com/maximilien/bosh-softlayer-cpi/action"
 )
 
 type Config struct {
 	Cloud CloudConfig `json:"cloud"`
 }
 
-type SoftLayerConfig struct {
-	Username string `json:"username"`
-	ApiKey   string `json:"apiKey"`
-}
-
-type CloudProperties struct {
-    Softlayer SoftLayerConfig `json:"softlayer"`
-	Agent bslcvm.AgentOptions `json:"agent"`
-}
-
 type CloudConfig struct {
 	Plugin string `json:"plugin"`
-	Properties CloudProperties `json:"properties"`
+	Properties bslcaction.ConcreteFactoryOptions `json:"properties"`
 }
 
 func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
@@ -50,22 +40,9 @@ func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
 }
 
 func (c Config) Validate() error {
-	err := c.Cloud.Properties.Softlayer.Validate()
-	if err != nil {
-		return bosherr.WrapError(err, "Validating SoftLayer configuration")
+	if c.Cloud.Plugin == "softlayer" {
+		return nil
 	}
 
-	return nil
-}
-
-func (c SoftLayerConfig) Validate() error {
-	if c.Username == "" {
-		return bosherr.Error("Must provide non-empty Username")
-	}
-
-	if c.ApiKey == "" {
-		return bosherr.Error("Must provide non-empty ApiKey")
-	}
-
-	return nil
+	return bosherr.Error("Should softlayer plugin")
 }
