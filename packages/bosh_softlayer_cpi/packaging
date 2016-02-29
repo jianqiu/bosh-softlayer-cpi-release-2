@@ -22,9 +22,9 @@ echo "after mv"
 
 pwd
 
-ls -la .
+ls -la src/github.com/maximilien/bosh-softlayer-cpi/
 
-ls -ls src/github.com/maximilien/bosh-softlayer-cpi/bin/
+ls -la src/github.com/maximilien/bosh-softlayer-cpi/bin/
 
 src/github.com/maximilien/bosh-softlayer-cpi/bin/build-linux-amd64
 
