@@ -27,10 +27,10 @@ jobs:
   plan:
   - aggregate:
     - {trigger: true,  passed: [build-candidate], get: bosh-cpi-dev-artifacts}
-    - {trigger: false,                            get: stemcell, resource: softlayer-ubuntu-stemcell}
     - {trigger: false, passed: [build-candidate], get: bosh-cpi-release, resource: bosh-cpi-release-in}
     - {trigger: false,                            get: bats}
     - {trigger: false,                            get: bosh-init}
+    - {trigger: false,                            get: stemcell, resource: softlayer-ubuntu-stemcell}
     - {trigger: true,  passed: [build-candidate], get: version-semver, resource: version-semver}
     - {trigger: false,                            get: bosh-release}
 
@@ -124,18 +124,15 @@ resources:
     secret_access_key: {{s3_secret_access_key}}
 
 - name: bosh-release
-  type: s3
+  type: bosh-io-release
   source:
-    regexp: bosh-236*\.tgz
-    bucket: {{s3_stemcell_bucket}}
-    access_key_id: {{s3_access_key_id}}
-    secret_access_key: {{s3_secret_access_key}}
+    repository: cloudfoundry/bosh
 
 - name: bosh-init
   type: s3
   source:
-    regexp: bosh-init
-    bucket: {{s3_bosh_init_bucket}}
+    regexp: bosh-init-([0-9.]+)-linux-amd64
+    bucket: bosh-softlayer-cpi-stemcells
     access_key_id: {{s3_access_key_id}}
     secret_access_key: {{s3_secret_access_key}}
 

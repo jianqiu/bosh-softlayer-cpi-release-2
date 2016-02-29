@@ -183,7 +183,8 @@ cp ./bosh-cpi-dev-artifacts/${cpi_release_name}-${semver}.tgz ${deployment_dir}/
 cp ./stemcell/*.tgz ${deployment_dir}/stemcell.tgz
 cp ./bosh-release/release.tgz ${deployment_dir}/bosh-release.tgz
 
-initexe="$PWD/bosh-init/bosh-init"
+initver=$(cat bosh-init/version)
+initexe="$PWD/bosh-init/bosh-init-${initver}-linux-amd64"
 
 chmod +x $initexe
 $initexe version
