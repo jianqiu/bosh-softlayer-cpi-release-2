@@ -14,9 +14,6 @@ RUN apt-get install -y postgresql-9.3 postgresql-client-9.3 libpq-dev; apt-get c
 
 RUN apt-get install -y sudo; apt-get clean
 
-# azure command line
-RUN npm install -g azure-cli
-
 # chruby
 RUN mkdir /tmp/chruby && \
     cd /tmp && \

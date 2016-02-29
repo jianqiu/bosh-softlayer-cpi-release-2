@@ -1,5 +1,8 @@
 #!/usr/bin/env bash
 
+
+sudo apt-get install libsqlite3-dev
+
 set -e
 
 source bosh-cpi-release/ci/tasks/utils.sh
