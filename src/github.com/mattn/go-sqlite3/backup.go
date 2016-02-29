@@ -5,6 +5,10 @@
 
 package sqlite3
 
+/*
+#include <sqlite3-binding.h>
+#include <stdlib.h>
+*/
 import "C"
 import (
 	"runtime"
