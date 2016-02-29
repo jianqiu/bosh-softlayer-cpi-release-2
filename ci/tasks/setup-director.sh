@@ -75,7 +75,7 @@ jobs:
   - {name: director, release: bosh}
   - {name: health_monitor, release: bosh}
   - {name: powerdns, release: bosh}
-  - {name: cpi, release: bosh-softlayer-cpi}
+  - {name: softlayer_cpi, release: bosh-softlayer-cpi}
 
   resource_pool: vms
   persistent_disk_pool: disks
@@ -163,7 +163,7 @@ jobs:
     ntp: &ntp []
 
 cloud_provider:
-  template: {name: cpi, release: bosh-softlayer-cpi}
+  template: {name: softlayer_cpi, release: bosh-softlayer-cpi}
 
   # Tells bosh-init how to contact remote agent
   mbus: https://admin:admin@bosh-experimental.softlayer.com:6868
