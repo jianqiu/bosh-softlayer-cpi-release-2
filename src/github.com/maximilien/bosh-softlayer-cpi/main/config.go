@@ -6,18 +6,26 @@ import (
 	bosherr "github.com/cloudfoundry/bosh-utils/errors"
 	boshsys "github.com/cloudfoundry/bosh-utils/system"
 
-	bslcaction "github.com/maximilien/bosh-softlayer-cpi/action"
+	bslcvm "github.com/maximilien/bosh-softlayer-cpi/softlayer/vm"
 )
 
 type Config struct {
-	SoftLayer SoftLayerConfig
-
-	Actions bslcaction.ConcreteFactoryOptions
+	Cloud CloudConfig `json:"cloud"`
 }
 
 type SoftLayerConfig struct {
 	Username string `json:"username"`
 	ApiKey   string `json:"apiKey"`
+}
+
+type CloudProperties struct {
+    Softlayer SoftLayerConfig `json:"softlayer"`
+	Agent bslcvm.AgentOptions `json:"agent"`
+}
+
+type CloudConfig struct {
+	Plugin string `json:"plugin"`
+	Properties CloudProperties `json:"properties"`
 }
 
 func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
@@ -42,7 +50,7 @@ func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
 }
 
 func (c Config) Validate() error {
-	err := c.SoftLayer.Validate()
+	err := c.Cloud.Properties.Softlayer.Validate()
 	if err != nil {
 		return bosherr.WrapError(err, "Validating SoftLayer configuration")
 	}
