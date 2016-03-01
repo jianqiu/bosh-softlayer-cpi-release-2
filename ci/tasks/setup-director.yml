@@ -20,4 +20,4 @@ params:
   SL_VLAN_PUBLIC:             replace-me
   SL_VLAN_PRIVATE:            replace-me
   SL_VM_NAME_PREFIX:          replace-me
-  BOSH_INIT_LOG_LEVEL:        info
+  BOSH_INIT_LOG_LEVEL:        warn

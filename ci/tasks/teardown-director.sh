@@ -5,12 +5,14 @@ set -e
 source /etc/profile.d/chruby.sh
 chruby 2.1.2
 
-initexe="${PWD}/setup-director/bosh-init/bosh-init"
-chmod +x ${initexe}
+pushd deployment
+  cp -r ./.bosh_init $HOME/
 
-echo "using bosh-init CLI version..."
-$initexe version
+  chmod +x ../bosh-init/bosh-init*
 
-director_manifest_file=${PWD}/setup-director/deployment/director-manifest.yml
-echo "deleting existing BOSH Director VM..."
-$initexe delete ${director_manifest_file}
+  echo "using bosh-init CLI version..."
+  ../bosh-init/bosh-init* version
+
+  echo "deleting existing BOSH Director VM..."
+  ../bosh-init/bosh-init* delete director-manifest.yml
+popd
