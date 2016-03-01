@@ -13,7 +13,6 @@
       }
     }
   }
-
   if_p('blobstore') do
     blobstore_params = {
       'provider' => p('blobstore.provider')
@@ -54,6 +53,5 @@
   end.else_if_p('nats') do
     params['cloud']['properties']['agent']['mbus'] = "nats://#{p('nats.user')}:#{p('nats.password')}@#{p(['agent.nats.address', 'nats.address'])}:#{p('nats.port')}"
   end
-
   JSON.dump(params)
 %>
