@@ -62,6 +62,8 @@ networks:
   type: dynamic
   dns:
   - 8.8.8.8
+  - 10.0.80.11
+  - 10.0.80.12
 
 jobs:
 - name: bosh
@@ -200,5 +202,5 @@ echo "=========================================="
 
 echo "Director:"
 echo "=========================================="
-cat /etc/hosts | grep "bosh-experimental.softlayer.com" | awk '{print $1}' | tee director-info
+cat /etc/hosts | grep "bosh-experimental.softlayer.com" | awk '{print $1}' | tee ${deployment_dir}/director-info
 echo "=========================================="

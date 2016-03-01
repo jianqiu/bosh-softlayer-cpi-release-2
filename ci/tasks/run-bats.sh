@@ -14,7 +14,7 @@ check_param SL_VM_NAME_PREFIX
 check_param SL_VM_DOMAIN
 
 
-DIRECTOR=$(cat setup-director/director-info)
+DIRECTOR=`cat ${PWD}/deployment/director-info`
 
 source /etc/profile.d/chruby.sh
 chruby 2.1.2
@@ -62,7 +62,6 @@ properties:
     - 10.0.80.12
   batlight:
     missing: nope
-  password:
 EOF
 
 cat > softlayer.yml.erb <<EOF
