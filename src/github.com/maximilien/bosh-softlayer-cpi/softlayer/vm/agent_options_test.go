@@ -40,7 +40,7 @@ var _ = Describe("AgentOptions", func() {
 		})
 
 		It("returns error if blobstore section is not valid", func() {
-			options.Blobstore.Type = ""
+			options.Blobstore.Provider = ""
 
 			err := options.Validate()
 			Expect(err).To(HaveOccurred())

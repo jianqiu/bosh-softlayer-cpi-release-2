@@ -1,6 +1,7 @@
 package main
 
 import (
+	"strings"
 	"encoding/json"
 
 	bosherr "github.com/cloudfoundry/bosh-utils/errors"
@@ -40,9 +41,14 @@ func NewConfigFromPath(path string, fs boshsys.FileSystem) (Config, error) {
 }
 
 func (c Config) Validate() error {
-	if c.Cloud.Plugin == "softlayer" {
-		return nil
+	if !strings.EqualFold(c.Cloud.Plugin, "softlayer") {
+		return bosherr.Error("Should softlayer plugin")
 	}
 
-	return bosherr.Error("Should softlayer plugin")
+	err := c.Cloud.Properties.Validate()
+	if err != nil {
+		return bosherr.WrapError(err, "Validating Cloud Properties")
+	}
+
+	return nil
 }
