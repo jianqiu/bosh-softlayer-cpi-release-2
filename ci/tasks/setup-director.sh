@@ -121,7 +121,7 @@ jobs:
       port: 25250
       provider: dav
     director:
-      cpi_job: cpi
+      cpi_job: softlayer_cpi
       address: 127.0.0.1
       name: bosh
       db:
