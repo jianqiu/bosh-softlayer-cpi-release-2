@@ -170,7 +170,7 @@ cloud_provider:
   template: {name: softlayer_cpi, release: bosh-softlayer-cpi}
 
   # Tells bosh-init how to contact remote agent
-  mbus: https://admin:admin@bosh-experimental.softlayer.com:6868
+  mbus: https://admin:admin@$SL_VM_NAME_PREFIX.$SL_VM_DOMAIN:6868
 
   properties:
     softlayer: *softlayer
