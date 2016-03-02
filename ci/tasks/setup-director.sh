@@ -185,7 +185,7 @@ EOF
 
 cp ./bosh-cpi-dev-artifacts/${cpi_release_name}-${semver}.tgz ${deployment_dir}/${cpi_release_name}.tgz
 cp ./stemcell/*.tgz ${deployment_dir}/stemcell.tgz
-cp ./bosh-release/release.tgz ${deployment_dir}/bosh-release.tgz
+cp ./bosh-release/*.tgz ${deployment_dir}/bosh-release.tgz
 
 initver=$(cat bosh-init/version)
 initexe="$PWD/bosh-init/bosh-init-${initver}-linux-amd64"
