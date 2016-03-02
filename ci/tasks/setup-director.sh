@@ -204,5 +204,5 @@ echo "=========================================="
 
 echo "Director:"
 echo "=========================================="
-cat /etc/hosts | grep "bosh-experimental.softlayer.com" | awk '{print $1}' | tee ${deployment_dir}/director-info
+cat /etc/hosts | grep "$SL_VM_NAME_PREFIX.$SL_VM_DOMAIN" | awk '{print $1}' | tee ${deployment_dir}/director-info
 echo "=========================================="
