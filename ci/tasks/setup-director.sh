@@ -8,6 +8,7 @@ check_param BASE_OS
 check_param SL_USERNAME
 check_param SL_API_KEY
 check_param SL_VM_NAME_PREFIX
+check_param SL_VM_DOMAIN
 check_param SL_DATACENTER
 check_param SL_VLAN_PUBLIC
 check_param SL_VLAN_PRIVATE
@@ -40,7 +41,7 @@ resource_pools:
     url: file://stemcell.tgz
   cloud_properties:
     VmNamePrefix: $SL_VM_NAME_PREFIX
-    Domain: softlayer.com
+    Domain: $SL_VM_DOMAIN
     StartCpus: 4
     MaxMemory: 8192
     EphemeralDiskSize: 100
@@ -175,7 +176,7 @@ cloud_provider:
     softlayer: *softlayer
 
     # Tells CPI how agent should listen for bosh-init requests
-    agent: {mbus: "https://admin:admin@bosh-experimental.softlayer.com:6868"}
+    agent: {mbus: https://admin:admin@$SL_VM_NAME_PREFIXsoftlayer.$SL_VM_DOMAIN:6868}
 
     blobstore: {provider: local, path: /var/vcap/micro_bosh/data/cache}
 
