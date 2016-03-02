@@ -178,4 +178,4 @@ EOF
 cd bats
 ./write_gemfile
 bundle install
-bundle exec rspec network_configuration_spec.rb
+bundle exec rspec spec
