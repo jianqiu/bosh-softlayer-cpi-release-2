@@ -176,7 +176,7 @@ cloud_provider:
     softlayer: *softlayer
 
     # Tells CPI how agent should listen for bosh-init requests
-    agent: {mbus: https://admin:admin@$SL_VM_NAME_PREFIXsoftlayer.$SL_VM_DOMAIN:6868}
+    agent: {mbus: https://admin:admin@$SL_VM_NAME_PREFIX.$SL_VM_DOMAIN:6868}
 
     blobstore: {provider: local, path: /var/vcap/micro_bosh/data/cache}
 
