@@ -50,7 +50,7 @@ properties:
     domain: $SL_VM_DOMAIN
   pool_size: 1
   instances: 1
-  persistent_disk: 80_000
+  persistent_disk: 40_000
   second_static_ip: 192.168.248.162
   networks:
   - name: default
@@ -63,7 +63,6 @@ properties:
   batlight:
     missing: nope
 EOF
-
 cat > softlayer.yml.erb <<EOF
 ---
 name: <%= properties.name || "bat" %>
@@ -179,4 +178,4 @@ EOF
 cd bats
 ./write_gemfile
 bundle install
-bundle exec rspec spec
+bundle exec rspec network_configuration_spec.rb

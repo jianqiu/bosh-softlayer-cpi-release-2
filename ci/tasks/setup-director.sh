@@ -7,6 +7,7 @@ source bosh-cpi-release/ci/tasks/utils.sh
 check_param BASE_OS
 check_param SL_USERNAME
 check_param SL_API_KEY
+check_param SL_VM_NAME_PREFIX
 check_param SL_DATACENTER
 check_param SL_VLAN_PUBLIC
 check_param SL_VLAN_PRIVATE
@@ -38,7 +39,7 @@ resource_pools:
   stemcell:
     url: file://stemcell.tgz
   cloud_properties:
-    VmNamePrefix: bosh-experimental
+    VmNamePrefix: $SL_VM_NAME_PREFIX
     Domain: softlayer.com
     StartCpus: 4
     MaxMemory: 8192
