@@ -44,7 +44,7 @@ properties:
   cloud_properties:
     bosh_ip: $BAT_DIRECTOR
     public_vlan_id: $SL_VLAN_PUBLIC
-    private_vlan_id:$SL_VLAN_PRIVATE
+    private_vlan_id: $SL_VLAN_PRIVATE
     vm_name_prefix: $SL_VM_NAME_PREFIX
     data_center: $SL_DATACENTER
     domain: $SL_VM_DOMAIN
