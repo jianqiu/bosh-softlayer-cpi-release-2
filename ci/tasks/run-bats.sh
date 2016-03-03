@@ -28,6 +28,7 @@ export BAT_DEPLOYMENT_SPEC="${PWD}/${BASE_OS}-bats-config.yml"
 export BAT_VCAP_PASSWORD=$BAT_VCAP_PASSWORD
 export BAT_INFRASTRUCTURE=softlayer
 export BAT_NETWORKING=dynamic
+export BAT_DEBUG_MODE=true
 
 bosh -n target $BAT_DIRECTOR
 echo Using This version of bosh:
@@ -50,8 +51,6 @@ properties:
     domain: $SL_VM_DOMAIN
   pool_size: 1
   instances: 1
-  persistent_disk: 40_000
-  second_static_ip: 192.168.248.162
   networks:
   - name: default
     type: dynamic
