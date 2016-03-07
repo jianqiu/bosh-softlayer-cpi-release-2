@@ -32,7 +32,7 @@ jobs:
     - {trigger: false,                            get: stemcell, resource: softlayer-ubuntu-stemcell}
 
   - task: run-bats
-    file: bosh-cpi-release/ci/tasks/run-bats.yml
+    file: bosh-cpi-release/ci/tasks/run-bats-debug.yml
     config:
       params:
         BASE_OS:                    ubuntu
