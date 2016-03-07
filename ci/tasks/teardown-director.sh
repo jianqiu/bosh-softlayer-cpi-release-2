@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
-set -e
+set -e -x
+
+source bosh-cpi-release/ci/tasks/utils.sh
 
 source /etc/profile.d/chruby.sh
 chruby 2.1.2

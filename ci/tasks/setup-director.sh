@@ -187,22 +187,30 @@ cp ./bosh-cpi-dev-artifacts/${cpi_release_name}-${semver}.tgz ${deployment_dir}/
 cp ./stemcell/*.tgz ${deployment_dir}/stemcell.tgz
 cp ./bosh-release/*.tgz ${deployment_dir}/bosh-release.tgz
 
-initver=$(cat bosh-init/version)
-initexe="$PWD/bosh-init/bosh-init-${initver}-linux-amd64"
+pushd ${deployment_dir}
 
-chmod +x $initexe
-$initexe version
+  function finish {
+    echo "Final state of director deployment:"
+    echo "=========================================="
+    cat director-manifest-state.json
+    echo "=========================================="
 
-cd $deployment_dir
+    echo "Director:"
+    echo "=========================================="
+    cat /etc/hosts | grep "$SL_VM_NAME_PREFIX.$SL_VM_DOMAIN" | awk '{print $1}' | tee director-info
+    echo "=========================================="
 
-$initexe deploy $manifest_filename
+    cp -r $HOME/.bosh_init ./
+  }
+  trap finish ERR
 
-echo "Final state of director deployment:"
-echo "=========================================="
-cat director-manifest-state.json
-echo "=========================================="
+  chmod +x ../bosh-init/bosh-init*
+  echo "using bosh-init CLI version..."
+  ../bosh-init/bosh-init* version
 
-echo "Director:"
-echo "=========================================="
-cat /etc/hosts | grep "$SL_VM_NAME_PREFIX.$SL_VM_DOMAIN" | awk '{print $1}' | tee ${deployment_dir}/director-info
-echo "=========================================="
+  echo "deploying BOSH..."
+  ../bosh-init/bosh-init* deploy ${manifest_filename}
+
+  trap - ERR
+  finish
+popd
