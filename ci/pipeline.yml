@@ -52,6 +52,7 @@ jobs:
       params:
         BASE_OS:                    ubuntu
         BAT_VCAP_PASSWORD:          {{bat_vcap_password}}
+        BAT_SECOND_STATIC_IP:       {{bat_second_static_ip}}
         SL_DATACENTER:              {{softlayer_datacenter}}
         SL_VLAN_PUBLIC:             {{softlayer_vlan_public}}
         SL_VLAN_PRIVATE:            {{softlayer_vlan_private}}
