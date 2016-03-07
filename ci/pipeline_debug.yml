@@ -59,7 +59,7 @@ jobs:
 
   - put: bosh-cpi-release
     resource: bosh-cpi-release-out
-    params: {repository: promote/bosh-cpi-release, rebase: true, tag_prefix: "v", tag: promote/integer_version}
+    params: {repository: promoted/repo, rebase: true, tag_prefix: "v", tag: promoted/integer_version}
 
   - put: release-version-semver
     params: {file: release-version-semver/number}
