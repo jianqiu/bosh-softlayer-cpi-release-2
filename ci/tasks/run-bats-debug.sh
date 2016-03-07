@@ -6,7 +6,6 @@ source bosh-cpi-release/ci/tasks/utils.sh
 
 check_param BASE_OS
 check_param BAT_VCAP_PASSWORD
-check_param BAT_SECOND_STATIC_IP
 check_param SL_DATACENTER
 check_param SL_VLAN_PUBLIC
 check_param SL_VLAN_PRIVATE
