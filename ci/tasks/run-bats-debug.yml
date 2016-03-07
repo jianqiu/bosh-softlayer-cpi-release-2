@@ -7,7 +7,7 @@ inputs:
 - name: bats
 
 run:
-  path: bosh-cpi-release/ci/tasks/run-bats.sh
+  path: bosh-cpi-release/ci/tasks/run-bats-debug.sh
 params:
   BASE_OS:                      replace-me
   BAT_VCAP_PASSWORD:            replace-me
